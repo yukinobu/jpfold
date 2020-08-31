@@ -66,7 +66,7 @@ def tab_to_space(line: str, tabsize: int) -> str:
             retcursor += 1
         cursor += 1
     return retstr
- 
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description = "日本語整形ツール")
