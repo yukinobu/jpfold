@@ -8,11 +8,11 @@ import unicodedata
 
 
 def main(args: argparse.Namespace) -> int:
-    infile:  TextIO = sys.stdin  if args.input=='-'  else open(args.input, 'r',encoding='utf-8')
-    outfile: TextIO = sys.stdout if args.output=='-' else open(args.output,'w',encoding='utf-8')
+    infile:  TextIO = sys.stdin  if args.input=="-"  else open(args.input, "r",encoding="utf-8")
+    outfile: TextIO = sys.stdout if args.output=="-" else open(args.output,"w",encoding="utf-8")
     for line in infile:
         w: int = count_east_asian_string_width(line);
-        outfile.write('{} {}'.format(w, line))
+        outfile.write("{} {}".format(w, line))
     infile.close()
     outfile.close()
     return 0
@@ -28,17 +28,17 @@ def count_east_asian_string_width(val: str) -> int:
         w: str = unicodedata.east_asian_width(c)
         if c == "\r" or c == "\n":
             pass
-        elif w == 'F':
+        elif w == "F":
             width += 2;
-        elif w == 'H':
+        elif w == "H":
             width += 1;
-        elif w == 'W':
+        elif w == "W":
             width += 2;
-        elif w == 'Na':
+        elif w == "Na":
             width += 1;
-        elif w == 'A':
+        elif w == "A":
             width += 2;
-        elif w == 'N':
+        elif w == "N":
             width += 2;
         else:
             assert 0
@@ -47,9 +47,9 @@ def count_east_asian_string_width(val: str) -> int:
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description = '日本語整形ツール')
-    parser.add_argument('-w', '--width',  type=int, default=66)
-    parser.add_argument('-i', '--input',  type=str, default='-')
-    parser.add_argument('-o', '--output', type=str, default='-')
+    parser = argparse.ArgumentParser(description = "日本語整形ツール")
+    parser.add_argument("-w", "--width",  type=int, default=66)
+    parser.add_argument("-i", "--input",  type=str, default="-")
+    parser.add_argument("-o", "--output", type=str, default="-")
     args = parser.parse_args()
     sys.exit( main(args) )
