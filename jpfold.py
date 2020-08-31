@@ -46,6 +46,28 @@ def count_east_asian_string_width(val: str) -> int:
     return width
 
 
+def tab_to_space(line: str, tabsize: int) -> str:
+    retstr:    str = ""
+    linelen:   int = len(line)
+    cursor:    int = 0
+    retcursor: int = 0
+    while cursor < linelen:
+        c: str = line[cursor:cursor+1]
+        if c == "\t":
+            mod: int = retcursor % tabsize
+            if mod == 0:
+                retstr += (" " * tabsize)
+                retcursor += tabsize
+            else:
+                retstr += (" " * (tabsize-mod))
+                retcursor += (tabsize-mod)
+        else:
+            retstr += c
+            retcursor += 1
+        cursor += 1
+    return retstr
+ 
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description = "日本語整形ツール")
     parser.add_argument("-w", "--width",  type=int, default=66)
