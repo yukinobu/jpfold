@@ -5,6 +5,7 @@ import sys
 import argparse
 from typing import TextIO
 
+
 def main(args: argparse.Namespace) -> int:
     infile: TextIO = sys.stdin if args.input=='-' else open(args.input)
     for line in infile:
