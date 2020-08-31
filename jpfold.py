@@ -13,8 +13,8 @@ def main(args: argparse.Namespace) -> int:
     for line in infile:
         w: int = count_east_asian_string_width(line);
         outfile.write("{} {}".format(w, line))
-    infile.close()
     outfile.close()
+    infile.close()
     return 0
 
 
