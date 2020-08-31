@@ -7,10 +7,12 @@ from typing import TextIO
 
 
 def main(args: argparse.Namespace) -> int:
-    infile: TextIO = sys.stdin if args.input=='-' else open(args.input)
+    infile:  TextIO = sys.stdin  if args.input=='-' else open(args.input,'r',encoding='utf-8')
+    outfile: TextIO = sys.stdout if args.input=='-' else open(args.input,'w',encoding='utf-8')
     for line in infile:
-        print(line.rstrip())
+        outfile.write(line.rstrip())
     infile.close()
+    outfile.close()
     return 0
 
 
