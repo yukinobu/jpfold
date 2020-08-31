@@ -26,7 +26,9 @@ def count_east_asian_string_width(val: str) -> int:
         # https://water2litter.net/rum/post/python_unicodedata_east_asian_width/
         c: int = val[cursor:cursor+1]
         w: str = unicodedata.east_asian_width(c)
-        if w == 'F':
+        if c == "\r" or c == "\n":
+            pass
+        elif w == 'F':
             width += 2;
         elif w == 'H':
             width += 1;
