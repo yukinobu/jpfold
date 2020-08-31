@@ -3,9 +3,10 @@
 
 import sys
 import argparse
+from typing import TextIO
 
 def main(args: argparse.Namespace) -> int:
-    infile = sys.stdin if args.input=='-' else open(args.input)
+    infile: TextIO = sys.stdin if args.input=='-' else open(args.input)
     for line in infile:
         print(line.rstrip())
     infile.close()
