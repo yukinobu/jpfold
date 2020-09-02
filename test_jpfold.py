@@ -22,6 +22,9 @@ class TestJpfold(unittest.TestCase):
         self.assertEqual( 0, jpfold.calc_position_by_width("1", 0) )
         self.assertEqual( 1, jpfold.calc_position_by_width("1", 1) )
         self.assertEqual( 1, jpfold.calc_position_by_width("1", 2) )
+        self.assertEqual( 0, jpfold.calc_position_by_width("12", 0) )
+        self.assertEqual( 1, jpfold.calc_position_by_width("12", 1) )
+        self.assertEqual( 2, jpfold.calc_position_by_width("12", 2) )
 
     def test_tab_to_space(self):
         self.assertEqual( jpfold.tab_to_space("abcdef",4),     "abcdef" )
