@@ -10,9 +10,6 @@ import unicodedata
 def main(args: argparse.Namespace) -> int:
     infile:  TextIO = sys.stdin  if args.input=="-"  else open(args.input, "r",encoding="utf-8")
     outfile: TextIO = sys.stdout if args.output=="-" else open(args.output,"w",encoding="utf-8")
-    for line in infile:
-        w: int = count_east_asian_string_width(line);
-        outfile.write("{} {}".format(w, line))
     retval = jpfold(infile, outfile);
     outfile.close()
     infile.close()
@@ -20,6 +17,8 @@ def main(args: argparse.Namespace) -> int:
 
 
 def jpfold(io_in: TextIO, io_out: TextIO) -> int:
+    for line in io_in:
+        io_out.write(line)
     return 0
 
 
