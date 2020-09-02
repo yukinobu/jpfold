@@ -13,8 +13,13 @@ def main(args: argparse.Namespace) -> int:
     for line in infile:
         w: int = count_east_asian_string_width(line);
         outfile.write("{} {}".format(w, line))
+    retval = jpfold(infile, outfile);
     outfile.close()
     infile.close()
+    return retval
+
+
+def jpfold(io_in: TextIO, io_out: TextIO) -> int:
     return 0
 
 
