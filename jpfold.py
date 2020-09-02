@@ -24,7 +24,7 @@ def jpfold(io_in: TextIO, io_out: TextIO) -> int:
 
 
 def count_east_asian_string_width(val: str) -> int:
-    width: int = 0
+    width:  int = 0
     vallen: int = len(val)
     cursor: int = 0
     while cursor < vallen:
