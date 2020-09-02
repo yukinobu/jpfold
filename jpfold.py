@@ -70,14 +70,14 @@ def one_line_break(origline: str, width: int):
         return origline[0:pos-1], origline[pos:]
 
 
-def calc_position_by_width(text: str, width: int) -> int:
+def calc_position_by_width(text: str, target_width: int) -> int:
     """文字列が特定の幅になる位置を返す
 
     Parameters:
     ----------
     origline: str
         入力文字列
-    width: int
+    target_width: int
         ターゲットとなる幅
 
     Returns:
@@ -87,7 +87,11 @@ def calc_position_by_width(text: str, width: int) -> int:
     """
     # very naive implement
     position: int = 0
-    while count_east_asian_string_width(text[0:position]) <= width:
+    textlen: int = len(text)
+    while position < textlen:
+        current_width: int = count_east_asian_string_width(text[0:position])
+        if(target_width <= current_width):
+            break
         position += 1
     return position
 
