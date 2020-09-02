@@ -26,6 +26,8 @@ class TestJpfold(unittest.TestCase):
         self.assertEqual( 0, jpfold.calc_position_by_width("12", 0) )
         self.assertEqual( 1, jpfold.calc_position_by_width("12", 1) )
         self.assertEqual( 2, jpfold.calc_position_by_width("12", 2) )
+        self.assertEqual( 0, jpfold.calc_position_by_width("\r\n", 0) )
+        self.assertEqual( 2, jpfold.calc_position_by_width("\r\n", 1) )
 
     def test_calc_position_by_width_jp(self):
         self.assertEqual( 0, jpfold.calc_position_by_width("あ", 0) )
