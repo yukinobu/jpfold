@@ -72,3 +72,4 @@ class TestJpfold(unittest.TestCase):
         self.assertEqual( jpfold.tab_to_space("ab\tcd\tef",4), "ab  cd  ef" )
         self.assertEqual( jpfold.tab_to_space("abc\td\tef",4), "abc d   ef" )
         self.assertEqual( jpfold.tab_to_space("abcd\tef",4),   "abcd    ef" )
+        self.assertEqual( jpfold.tab_to_space("a\tc\tef",1),   "a c ef" )
