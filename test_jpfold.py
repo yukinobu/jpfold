@@ -38,6 +38,25 @@ class TestJpfold(unittest.TestCase):
         self.assertEqual( 2, jpfold.calc_position_by_width("あい", 4) )
         self.assertEqual( 2, jpfold.calc_position_by_width("あい", 5) )
         self.assertEqual( 2, jpfold.calc_position_by_width("あい", 6) )
+        self.assertEqual( 5, jpfold.calc_position_by_width("こんにちは", 10) )
+        self.assertEqual( 3, jpfold.calc_position_by_width("こんにちは", 6) )
+
+    def test_one_line_break(self):
+        origline, nextline = jpfold.one_line_break("こんにちは", 10)
+        self.assertEqual( origline, "こんにちは" )
+        self.assertEqual( nextline, "" )
+        origline, nextline = jpfold.one_line_break("こんにちは", 6)
+        self.assertEqual( origline, "こんに" )
+        self.assertEqual( nextline, "ちは" )
+        origline, nextline = jpfold.one_line_break("こんにちは", 5)
+        self.assertEqual( origline, "こんに" )
+        self.assertEqual( nextline, "ちは" )
+        origline, nextline = jpfold.one_line_break("こんにちは", 4)
+        self.assertEqual( origline, "こん" )
+        self.assertEqual( nextline, "にちは" )
+        origline, nextline = jpfold.one_line_break("こんにちは", 2)
+        self.assertEqual( origline, "こ" )
+        self.assertEqual( nextline, "んにちは" )
 
     def test_tab_to_space(self):
         self.assertEqual( jpfold.tab_to_space("abcdef",4),     "abcdef" )
