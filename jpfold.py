@@ -3,6 +3,7 @@
 
 import sys
 import argparse
+from sys import intern
 from typing import TextIO
 import unicodedata
 
@@ -112,27 +113,44 @@ def count_east_asian_string_width(val: str) -> int:
     vallen: int = len(val)
     cursor: int = 0
     while cursor < vallen:
-        # https://water2litter.net/rum/post/python_unicodedata_east_asian_width/
         c: int = val[cursor:cursor+1]
         w: str = unicodedata.east_asian_width(c)
         if c == "\r" or c == "\n":
             pass
-        elif w == "F":
-            width += 2;
-        elif w == "H":
-            width += 1;
-        elif w == "W":
-            width += 2;
-        elif w == "Na":
-            width += 1;
-        elif w == "A":
-            width += 2;
-        elif w == "N":
-            width += 2;
         else:
-            assert 0
+            width += east_asian_width_symbol_to_number(w)
         cursor += 1
     return width
+
+
+def east_asian_width_symbol_to_number(symbol: str) -> int:
+    """unicodedata.east_asian_width が返す記号を数字幅に変換
+
+    Parameters:
+    ----------
+    symbol: str
+        unicodedata.east_asian_width が返す記号
+
+    Returns:
+    ----------
+    number: int
+        幅。半角なら1、全角なら2を基本
+    """
+    # https://water2litter.net/rum/post/python_unicodedata_east_asian_width/
+    if symbol == "F":
+        return 2
+    elif symbol == "H":
+        return 1
+    elif symbol == "W":
+        return 2
+    elif symbol == "Na":
+        return 1
+    elif symbol == "A":
+        return 2
+    elif symbol == "N":
+        return 2
+    else:
+        assert 0, "不明なeast_asian_widthシンボル: "+symbol
 
 
 def tab_to_space(line: str, tabsize: int) -> str:
