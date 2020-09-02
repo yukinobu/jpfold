@@ -45,14 +45,14 @@ def jpfold(io_in: TextIO, io_out: TextIO, args: argparse.Namespace) -> int:
     return 0
 
 
-def one_line_break(origline: str, width: int):
+def one_line_break(origline: str, target_width: int):
     """テキストを所定の幅で改行する
 
     Parameters:
     ----------
     origline: str
         改行すべき元の行
-    width: int
+    target_width: int
         一行の幅、すなわち改行すべき位置
 
     Returns:
@@ -63,10 +63,10 @@ def one_line_break(origline: str, width: int):
         改行によって作成された次の行
     """
     nextline: str = ""
-    if(count_east_asian_string_width(origline) <= width):
+    if(count_east_asian_string_width(origline) <= target_width):
         return origline, ""
     else:
-        pos: int = calc_position_by_width(origline, width)
+        pos: int = calc_position_by_width(origline, target_width)
         return origline[0:pos-1], origline[pos:]
 
 
@@ -75,7 +75,7 @@ def calc_position_by_width(text: str, target_width: int) -> int:
 
     Parameters:
     ----------
-    origline: str
+    text: str
         入力文字列
     target_width: int
         ターゲットとなる幅
