@@ -183,6 +183,7 @@ if __name__ == "__main__":
     parser.add_argument("-o", "--output", type=str, default="-", help="出力ファイル名を指定します（無指定は標準出力）")
     parser.add_argument("--no-linehead-kinsoku", action="store_false", help="行頭禁則処理を抑止します")
     parser.add_argument("--no-linetail-kinsoku", action="store_false", help="行末禁則処理を抑止します")
+    parser.add_argument("--no-separate-kinsoku", action="store_false", help="分割禁則処理を抑止します")
     parser.add_argument("--no-indent",           action="store_false", help="改行時のインデントを抑止します")
     parser.add_argument("--no-listtail-indent",  action="store_false", help="箇条書き途中で改行時のぶら下げインデントを抑止します")
     args = parser.parse_args()
