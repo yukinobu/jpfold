@@ -63,6 +63,7 @@ def one_line_break(origline: str, target_width: int):
         改行によって作成された次の行
     """
     nextline: str = ""
+    assert 1 <= target_width, "target_width は 1 以上である必要があります"
     pos: int = calc_position_by_width(origline, target_width)
     return origline[0:pos], origline[pos:]
 
@@ -83,6 +84,7 @@ def calc_position_by_width(text: str, target_width: int) -> int:
         strがwidth幅となる位置
     """
     # very naive implement
+    assert 0 <= target_width, "target_width は 0 以上である必要があります"
     position: int = 0
     textlen: int = len(text)
     while position < textlen:
@@ -134,6 +136,7 @@ def count_east_asian_string_width(val: str) -> int:
 
 
 def tab_to_space(line: str, tabsize: int) -> str:
+    assert 1 <= tabsize, "tabsize は 1 以上である必要があります"
     retstr:    str = ""
     linelen:   int = len(line)
     cursor:    int = 0

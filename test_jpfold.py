@@ -17,6 +17,7 @@ class TestJpfold(unittest.TestCase):
         self.assertEqual( 2, jpfold.count_east_asian_string_width("☺") )
 
     def test_calc_position_by_width_en(self):
+        self.assertRaises( AssertionError, lambda: jpfold.calc_position_by_width("",-1) )
         self.assertEqual( 0, jpfold.calc_position_by_width("", 0) )
         self.assertEqual( 0, jpfold.calc_position_by_width("", 1) )
         self.assertEqual( 0, jpfold.calc_position_by_width("1", 0) )
@@ -42,6 +43,7 @@ class TestJpfold(unittest.TestCase):
         self.assertEqual( 3, jpfold.calc_position_by_width("こんにちは", 6) )
 
     def test_one_line_break(self):
+        self.assertRaises( AssertionError, lambda: jpfold.one_line_break("こんにちは", 0) )
         origline, nextline = jpfold.one_line_break("こんにちは", 10)
         self.assertEqual( origline, "こんにちは" )
         self.assertEqual( nextline, "" )
@@ -59,6 +61,7 @@ class TestJpfold(unittest.TestCase):
         self.assertEqual( nextline, "んにちは" )
 
     def test_tab_to_space(self):
+        self.assertRaises( AssertionError, lambda: jpfold.tab_to_space("abcdef",0) )
         self.assertEqual( jpfold.tab_to_space("abcdef",4),     "abcdef" )
         self.assertEqual( jpfold.tab_to_space("abcdef",8),     "abcdef" )
         self.assertEqual( jpfold.tab_to_space("\tef",4),       "    ef" )
