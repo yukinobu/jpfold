@@ -16,6 +16,10 @@ class TestJpfold(unittest.TestCase):
         self.assertEqual( 4, jpfold.count_east_asian_string_width("ﾆｺﾆｺ") )
         self.assertEqual( 2, jpfold.count_east_asian_string_width("☺") )
 
+    def test_calc_position_by_width(self):
+        self.assertEqual( 0, jpfold.calc_position_by_width("", 0) )
+        self.assertEqual( 0, jpfold.calc_position_by_width("", 1) )
+
     def test_tab_to_space(self):
         self.assertEqual( jpfold.tab_to_space("abcdef",4),     "abcdef" )
         self.assertEqual( jpfold.tab_to_space("abcdef",8),     "abcdef" )
