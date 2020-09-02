@@ -10,7 +10,7 @@ import unicodedata
 def main(args: argparse.Namespace) -> int:
     infile:  TextIO = sys.stdin  if args.input=="-"  else open(args.input, "r",encoding="utf-8")
     outfile: TextIO = sys.stdout if args.output=="-" else open(args.output,"w",encoding="utf-8")
-    retval = jpfold(infile, outfile);
+    retval = jpfold(infile, outfile)
     outfile.close()
     infile.close()
     return retval
