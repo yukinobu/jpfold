@@ -20,6 +20,22 @@ def main(args: argparse.Namespace) -> int:
 
 
 def jpfold(io_in: TextIO, io_out: TextIO, args: argparse.Namespace) -> int:
+    """jpfold のメイン関数
+
+    Parameters:
+    ----------
+    io_in: TextIO
+        入力用のI/O
+    io_out: TextIO
+        出力用のI/O
+    args: argparse.Namespace
+        コマンドライン引数
+
+    Returns:
+    ----------
+    int
+        成功なら 0 を返す
+    """
     for line in io_in:
         origline, nextline = one_line_break(line, args.width)
         while nextline != "":
@@ -30,6 +46,22 @@ def jpfold(io_in: TextIO, io_out: TextIO, args: argparse.Namespace) -> int:
 
 
 def one_line_break(origline: str, width: int):
+    """テキストを所定の幅で改行する
+
+    Parameters:
+    ----------
+    origline: str
+        改行すべき元の行
+    width: int
+        一行の幅、すなわち改行すべき位置
+
+    Returns:
+    ----------
+    origline: str
+        改行された元の行
+    nextline: str
+        改行によって作成された次の行
+    """
     nextline: str = ""
     if(count_east_asian_string_width(origline) <= width):
         return origline, ""
@@ -39,6 +71,20 @@ def one_line_break(origline: str, width: int):
 
 
 def calc_position_by_width(text: str, width: int) -> int:
+    """文字列が特定の幅になる位置を返す
+
+    Parameters:
+    ----------
+    origline: str
+        入力文字列
+    width: int
+        ターゲットとなる幅
+
+    Returns:
+    ----------
+    position: int
+        strがwidth幅となる位置
+    """
     # very naive implement
     position: int = 0
     while count_east_asian_string_width(text[0:position]) <= width:
@@ -47,6 +93,18 @@ def calc_position_by_width(text: str, width: int) -> int:
 
 
 def count_east_asian_string_width(val: str) -> int:
+    """文字列の幅を数えて返す
+
+    Parameters:
+    ----------
+    val: str
+        入力文字列
+
+    Returns:
+    ----------
+    width: int
+        入力文字列の幅
+    """
     width:  int = 0
     vallen: int = len(val)
     cursor: int = 0
