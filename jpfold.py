@@ -83,7 +83,7 @@ def calc_position_by_width(text: str, target_width: int) -> int:
     position: int
         strがwidth幅となる位置
     """
-    # very naive implement
+    # very naive implement: O(textlen^2)
     assert 0 <= target_width, "target_width は 0 以上である必要があります"
     position: int = 0
     textlen: int = len(text)
