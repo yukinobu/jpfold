@@ -63,11 +63,8 @@ def one_line_break(origline: str, target_width: int):
         改行によって作成された次の行
     """
     nextline: str = ""
-    if(count_east_asian_string_width(origline) <= target_width):
-        return origline, ""
-    else:
-        pos: int = calc_position_by_width(origline, target_width)
-        return origline[0:pos-1], origline[pos:]
+    pos: int = calc_position_by_width(origline, target_width)
+    return origline[0:pos], origline[pos:]
 
 
 def calc_position_by_width(text: str, target_width: int) -> int:
