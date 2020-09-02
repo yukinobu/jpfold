@@ -7,6 +7,9 @@ from typing import TextIO
 import unicodedata
 
 
+LINE_BREAK: str = "\r\n"
+
+
 def main(args: argparse.Namespace) -> int:
     infile:  TextIO = sys.stdin  if args.input=="-"  else open(args.input, "r",encoding="utf-8")
     outfile: TextIO = sys.stdout if args.output=="-" else open(args.output,"w",encoding="utf-8")
@@ -18,8 +21,29 @@ def main(args: argparse.Namespace) -> int:
 
 def jpfold(io_in: TextIO, io_out: TextIO, args: argparse.Namespace) -> int:
     for line in io_in:
-        io_out.write(line)
+        origline, nextline = one_line_break(line, args.width)
+        while nextline != "":
+            io_out.write(origline+LINE_BREAK)
+            origline, nextline = one_line_break(nextline, args.width)
+        io_out.write(origline)
     return 0
+
+
+def one_line_break(origline: str, width: int):
+    nextline: str = ""
+    if(count_east_asian_string_width(origline) <= width):
+        return origline, ""
+    else:
+        pos: int = calc_position_by_width(origline, width)
+        return origline[0:pos-1], origline[pos:]
+
+
+def calc_position_by_width(text: str, width: int) -> int:
+    # very naive implement
+    position: int = 0
+    while count_east_asian_string_width(text[0:position]) <= width:
+        position += 1
+    return position
 
 
 def count_east_asian_string_width(val: str) -> int:
