@@ -74,7 +74,8 @@ class TestJpfold(unittest.TestCase):
         self.assertEqual( jpfold.tab_to_space("abcd\tef",4),   "abcd    ef" )
         self.assertEqual( jpfold.tab_to_space("a\tc\tef",1),   "a c ef" )
 
-    def test_kinsoku(self):
+    def test_kinsoku_char(self):
+        self.assertFalse( jpfold.is_linehead_konsoku("あ") )
         self.assertTrue( jpfold.is_linehead_konsoku("。") )
         self.assertTrue( jpfold.is_linehead_konsoku("」") )
         self.assertTrue( jpfold.is_linehead_konsoku(")") )
@@ -82,5 +83,10 @@ class TestJpfold(unittest.TestCase):
         self.assertTrue( jpfold.is_linehead_konsoku("？") )
         self.assertTrue( jpfold.is_linehead_konsoku("!") )
         self.assertTrue( jpfold.is_linehead_konsoku("っ") )
+        self.assertFalse( jpfold.is_linetail_konsoku("あ") )
         self.assertTrue( jpfold.is_linetail_konsoku("「") )
         self.assertTrue( jpfold.is_linetail_konsoku("(") )
+        self.assertRaises( AssertionError, lambda: jpfold.is_linehead_konsoku("") )
+        self.assertRaises( AssertionError, lambda: jpfold.is_linetail_konsoku("") )
+        self.assertRaises( AssertionError, lambda: jpfold.is_linehead_konsoku("ああ") )
+        self.assertRaises( AssertionError, lambda: jpfold.is_linetail_konsoku("ああ") )
