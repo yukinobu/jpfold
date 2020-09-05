@@ -81,5 +81,6 @@ class TestJpfold(unittest.TestCase):
         self.assertTrue( jpfold.is_linehead_konsoku("。") )
         self.assertTrue( jpfold.is_linehead_konsoku("？") )
         self.assertTrue( jpfold.is_linehead_konsoku("!") )
+        self.assertTrue( jpfold.is_linehead_konsoku("っ") )
         self.assertTrue( jpfold.is_linetail_konsoku("「") )
         self.assertTrue( jpfold.is_linetail_konsoku("(") )
