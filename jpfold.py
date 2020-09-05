@@ -177,6 +177,16 @@ def tab_to_space(line: str, tabsize: int) -> str:
     return retstr
 
 
+def is_linehead_konsoku(char: str) -> bool:
+    assert len(char) == 1, "charは1文字でなくてはなりません"
+    return char in LINEHEAD_KINSOKU
+
+
+def is_linetail_konsoku(char: str) -> bool:
+    assert len(char) == 1, "charは1文字でなくてはなりません"
+    return char in LINETAIL_KINSOKU
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="日本語整形ツール")
     parser.add_argument("-w", "--width",  type=int, default=66,  help="自動改行の幅を指定します")

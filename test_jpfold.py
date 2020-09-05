@@ -73,3 +73,13 @@ class TestJpfold(unittest.TestCase):
         self.assertEqual( jpfold.tab_to_space("abc\td\tef",4), "abc d   ef" )
         self.assertEqual( jpfold.tab_to_space("abcd\tef",4),   "abcd    ef" )
         self.assertEqual( jpfold.tab_to_space("a\tc\tef",1),   "a c ef" )
+
+    def test_kinsoku(self):
+        self.assertTrue( jpfold.is_linehead_konsoku("。") )
+        self.assertTrue( jpfold.is_linehead_konsoku("」") )
+        self.assertTrue( jpfold.is_linehead_konsoku(")") )
+        self.assertTrue( jpfold.is_linehead_konsoku("。") )
+        self.assertTrue( jpfold.is_linehead_konsoku("？") )
+        self.assertTrue( jpfold.is_linehead_konsoku("!") )
+        self.assertTrue( jpfold.is_linetail_konsoku("「") )
+        self.assertTrue( jpfold.is_linetail_konsoku("(") )
