@@ -9,6 +9,8 @@ import unicodedata
 
 
 LINE_BREAK: str = "\r\n"
+LINEHEAD_KINSOKU = "!%),.:;?]}¢°’”‰′″℃、。々〉》」』】〕ぁぃぅぇぉっゃゅょゎ゛゜ゝゞァィゥェォッャュョヮヵヶ・ーヽヾ！％），．：；？］｝｡｣､･ｧｨｩｪｫｬｭｮｯｰﾞﾟ￠"
+LINETAIL_KINSOKU = "$([\{£¥‘“〈《「『【〔＄（［｛｢￡￥"
 
 
 def main(args: argparse.Namespace) -> int:
@@ -64,8 +66,17 @@ def one_line_break(origline: str, target_width: int):
         改行によって作成された次の行
     """
     assert 1 <= target_width, "target_width は 1 以上である必要があります"
-    pos: int = calc_position_by_width(origline, target_width)
-    return origline[0:pos], origline[pos:]
+    origline_len: int = len(origline)
+    break_pos: int = calc_position_by_width(origline, target_width)
+    while break_pos < origline_len and is_linehead_konsoku(origline[break_pos]):
+        break_pos += 1
+    while 0 < break_pos and is_linetail_konsoku(origline[break_pos-1]):
+        break_pos -= 1
+    if break_pos == 0:
+        while is_linehead_konsoku(origline[break_pos]) or is_linetail_konsoku(origline[break_pos]):
+            break_pos += 1
+        break_pos += 1
+    return origline[0:break_pos], origline[break_pos:]
 
 
 def calc_position_by_width(text: str, target_width: int) -> int:
@@ -173,6 +184,16 @@ def tab_to_space(line: str, tabsize: int) -> str:
             retcursor += 1
         cursor += 1
     return retstr
+
+
+def is_linehead_konsoku(char: str) -> bool:
+    assert len(char) == 1, "charは1文字でなくてはなりません"
+    return char in LINEHEAD_KINSOKU
+
+
+def is_linetail_konsoku(char: str) -> bool:
+    assert len(char) == 1, "charは1文字でなくてはなりません"
+    return char in LINETAIL_KINSOKU
 
 
 if __name__ == "__main__":
