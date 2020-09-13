@@ -62,6 +62,14 @@ class TestJpfold(unittest.TestCase):
         self.assertEqual( origline, "こ" )
         self.assertEqual( nextline, "んにちは" )
 
+    def test_one_line_break_with_kinsoku(self):
+        origline, nextline = jpfold.one_line_break("今日、晴れる？", 4)
+        self.assertEqual( origline, "今日、" )
+        self.assertEqual( nextline, "晴れる？" )
+        origline, nextline = jpfold.one_line_break("晴れる？", 6)
+        self.assertEqual( origline, "晴れる？" )
+        self.assertEqual( nextline, "" )
+
     def test_tab_to_space(self):
         self.assertRaises( AssertionError, lambda: jpfold.tab_to_space("abcdef",0) )
         self.assertEqual( jpfold.tab_to_space("abcdef",4),     "abcdef" )
