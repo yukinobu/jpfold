@@ -69,6 +69,9 @@ class TestJpfold(unittest.TestCase):
         origline, nextline = jpfold.one_line_break("晴れる？", 6)
         self.assertEqual( origline, "晴れる？" )
         self.assertEqual( nextline, "" )
+        origline, nextline = jpfold.one_line_break("それ「みかん」", 6)
+        self.assertEqual( origline, "それ" )
+        self.assertEqual( nextline, "「みかん」" )
 
     def test_tab_to_space(self):
         self.assertRaises( AssertionError, lambda: jpfold.tab_to_space("abcdef",0) )

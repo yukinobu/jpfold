@@ -70,6 +70,8 @@ def one_line_break(origline: str, target_width: int):
     break_pos: int = calc_position_by_width(origline, target_width)
     while break_pos < origline_len and is_linehead_konsoku(origline[break_pos]):
         break_pos += 1
+    while 0 < break_pos and is_linetail_konsoku(origline[break_pos-1]):
+        break_pos -= 1
     return origline[0:break_pos], origline[break_pos:]
 
 
