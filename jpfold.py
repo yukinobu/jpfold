@@ -63,7 +63,6 @@ def one_line_break(origline: str, target_width: int):
     nextline: str
         改行によって作成された次の行
     """
-    nextline: str = ""
     assert 1 <= target_width, "target_width は 1 以上である必要があります"
     pos: int = calc_position_by_width(origline, target_width)
     return origline[0:pos], origline[pos:]
