@@ -123,7 +123,7 @@ def count_east_asian_string_width(val: str) -> int:
     vallen: int = len(val)
     cursor: int = 0
     while cursor < vallen:
-        c: int = val[cursor:cursor+1]
+        c: str = val[cursor:cursor+1]
         w: str = unicodedata.east_asian_width(c)
         if c == "\r" or c == "\n":
             pass
