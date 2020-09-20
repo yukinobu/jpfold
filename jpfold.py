@@ -3,7 +3,7 @@
 
 import sys
 import argparse
-from sys import intern
+from sys import float_repr_style, intern
 from typing import TextIO
 import unicodedata
 
@@ -160,7 +160,7 @@ def east_asian_width_symbol_to_number(symbol: str) -> int:
     elif symbol == "N":
         return 2
     else:
-        assert 0, "不明なeast_asian_widthシンボル: "+symbol
+        assert False, "不明なeast_asian_widthシンボル: "+symbol
 
 
 def tab_to_space(line: str, tabsize: int) -> str:
