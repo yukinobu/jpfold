@@ -3,7 +3,6 @@
 
 import sys
 import argparse
-from sys import float_repr_style, intern
 from typing import TextIO
 import unicodedata
 
