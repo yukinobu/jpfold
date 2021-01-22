@@ -197,9 +197,9 @@ def is_linetail_konsoku(char: str) -> bool:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="日本語整形ツール")
-    parser.add_argument("-w", "--width",  type=int, default=66,  help="自動改行の幅を指定します")
-    parser.add_argument("-i", "--input",  type=str, default="-", help="入力ファイル名を指定します（無指定は標準入力）")
-    parser.add_argument("-o", "--output", type=str, default="-", help="出力ファイル名を指定します（無指定は標準出力）")
+    parser.add_argument("-w", "--width",  type=int, default=66,  help="自動改行の幅を指定します（デフォルトは66）")
+    parser.add_argument("-i", "--input",  type=str, default="-", help="入力ファイル名を指定します（デフォルトは標準入力）")
+    parser.add_argument("-o", "--output", type=str, default="-", help="出力ファイル名を指定します（デフォルトは標準出力）")
     parser.add_argument("--no-linehead-kinsoku", action="store_false", help="行頭禁則処理を抑止します")
     parser.add_argument("--no-linetail-kinsoku", action="store_false", help="行末禁則処理を抑止します")
     parser.add_argument("--no-separate-kinsoku", action="store_false", help="分割禁則処理を抑止します")
