@@ -9,7 +9,7 @@ import unicodedata
 
 LINE_BREAK: str = "\r\n"
 LINEHEAD_KINSOKU = "!%),.:;?]}¢°’”‰′″℃、。々〉》」』】〕ぁぃぅぇぉっゃゅょゎ゛゜ゝゞァィゥェォッャュョヮヵヶ・ーヽヾ！％），．：；？］｝｡｣､･ｧｨｩｪｫｬｭｮｯｰﾞﾟ￠"
-LINETAIL_KINSOKU = "$([\{£¥‘“〈《「『【〔＄（［｛｢￡￥"
+LINETAIL_KINSOKU = "$([{£¥‘“〈《「『【〔＄（［｛｢￡￥"
 
 
 def main(args: argparse.Namespace) -> int:
