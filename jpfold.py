@@ -8,8 +8,8 @@ import unicodedata
 
 
 LINE_BREAK: str = "\r\n"
-LINEHEAD_KINSOKU = "!%),.:;?]}¢°’”‰′″℃、。々〉》」』】〕ぁぃぅぇぉっゃゅょゎ゛゜ゝゞァィゥェォッャュョヮヵヶ・ーヽヾ！％），．：；？］｝｡｣､･ｧｨｩｪｫｬｭｮｯｰﾞﾟ￠"
-LINETAIL_KINSOKU = "$([{£¥‘“〈《「『【〔＄（［｛｢￡￥"
+LINEHEAD_KINSOKU: str = "!%),.:;?]}¢°’”‰′″℃、。々〉》」』】〕ぁぃぅぇぉっゃゅょゎ゛゜ゝゞァィゥェォッャュョヮヵヶ・ーヽヾ！％），．：；？］｝｡｣､･ｧｨｩｪｫｬｭｮｯｰﾞﾟ￠"
+LINETAIL_KINSOKU: str = "$([{£¥‘“〈《「『【〔＄（［｛｢￡￥"
 
 
 def main(args: argparse.Namespace) -> int:
