@@ -211,9 +211,9 @@ def is_linetail_konsoku(char: str) -> bool:
 
 
 def get_indent_for_line(line: str) -> str:
-    indent_regex: re.Pattern = re.compile("([ 　\t]*)")
+    indent_regex: re.Pattern = re.compile(r"([ 　\t]*)")
     assert isinstance(indent_regex, re.Pattern), "正規表現の初期化に失敗しました"
-    linesymbol_regex: re.Pattern = re.compile("([\[(<]?[A-Za-z0-9][\])>]?\.? ?|[-*・※] ?)")
+    linesymbol_regex: re.Pattern = re.compile(r"([\[(<]?[A-Za-z0-9][\])>]?\.? ?|[-*・※] ?)")
     assert isinstance(linesymbol_regex, re.Pattern), "正規表現の初期化に失敗しました"
 
     next_indent: str = ""
