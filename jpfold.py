@@ -6,7 +6,6 @@ import argparse
 from typing import TextIO
 import unicodedata
 import re
-from pprint import pprint
 
 
 LINE_BREAK: str = "\r\n"
