@@ -148,6 +148,28 @@ class TestJpfold(unittest.TestCase):
         self.assertEqual(origline, "  ・今日、")
         self.assertEqual(nextline, "    晴れる？")
 
+    def test_one_line_break_for_url(self):
+        origline, nextline = jpfold.one_line_break("https://www.example.jp/", 10)
+        self.assertEqual(origline, "https://www.yukinobu.jp/")
+        self.assertEqual(nextline, "")
+        origline, nextline = jpfold.one_line_break("こんにちはhttps://www.example.jp/", 10)
+        self.assertEqual(origline, "こんにちは")
+        self.assertEqual(nextline, "https://www.yukinobu.jp/")
+        origline, nextline = jpfold.one_line_break("mailto:test@example.com", 7)
+        self.assertEqual(origline, "mailto:test@example.com")
+        self.assertEqual(nextline, "")
+        origline, nextline = jpfold.one_line_break("こんにちはmailto:test@example.com", 7)
+        self.assertEqual(origline, "こんにちは")
+        self.assertEqual(nextline, "mailto:test@example.com")
+
+    def test_one_line_break_for_mailaddress(self):
+        origline, nextline = jpfold.one_line_break("test@example.com", 7)
+        self.assertEqual(origline, "test@example.com")
+        self.assertEqual(nextline, "")
+        origline, nextline = jpfold.one_line_break("こんにちはmailto:test@example.com", 7)
+        self.assertEqual(origline, "こんにちは")
+        self.assertEqual(nextline, "mailto:test@example.com")
+
     def test_tab_to_space(self):
         self.assertRaises(AssertionError, lambda: jpfold.tab_to_space("abcdef", 0))
         self.assertEqual(jpfold.tab_to_space("abcdef", 4),     "abcdef")
