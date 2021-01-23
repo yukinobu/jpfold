@@ -85,6 +85,17 @@ class TestJpfold(unittest.TestCase):
         self.assertEqual(origline, "」」」")
         self.assertEqual(nextline, "")
 
+    def test_one_line_break_with_indent(self):
+        origline, nextline = jpfold.one_line_break("  今日、晴れる？", 4)
+        self.assertEqual(origline, "  今")
+        self.assertEqual(nextline, "  日、晴れる？")
+        origline, nextline = jpfold.one_line_break("・今日、晴れる？", 4)
+        self.assertEqual(origline, "・今")
+        self.assertEqual(nextline, "  日、晴れる？")
+        origline, nextline = jpfold.one_line_break("  ・今日、晴れる？", 10)
+        self.assertEqual(origline, "  ・今日、")
+        self.assertEqual(nextline, "    晴れる？")
+
     def test_tab_to_space(self):
         self.assertRaises(AssertionError, lambda: jpfold.tab_to_space("abcdef", 0))
         self.assertEqual(jpfold.tab_to_space("abcdef", 4),     "abcdef")

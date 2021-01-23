@@ -76,7 +76,8 @@ def one_line_break(origline: str, target_width: int):
         while break_pos < origline_len and (is_linehead_konsoku(origline[break_pos]) or is_linetail_konsoku(origline[break_pos])):
             break_pos += 1
         break_pos += 1
-    return origline[0:break_pos], origline[break_pos:]
+    indent: str = get_indent_for_line(origline)
+    return origline[0:break_pos], indent+origline[break_pos:]
 
 
 def calc_position_by_width(text: str, target_width: int) -> int:
