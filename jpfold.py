@@ -195,6 +195,10 @@ def is_linetail_konsoku(char: str) -> bool:
     return char in LINETAIL_KINSOKU
 
 
+def get_indent_for_line(line: str) -> str:
+    return ""
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="日本語整形ツール")
     parser.add_argument("-w", "--width",  type=int, default=66,  help="自動改行の幅を指定します（デフォルトは66）")
