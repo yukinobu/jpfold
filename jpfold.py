@@ -5,6 +5,7 @@ import sys
 import argparse
 from typing import TextIO
 import unicodedata
+import re
 
 
 LINE_BREAK: str = "\r\n"
@@ -196,7 +197,10 @@ def is_linetail_konsoku(char: str) -> bool:
 
 
 def get_indent_for_line(line: str) -> str:
-    return ""
+    indent_regex: re.Pattern = re.compile("[-* \t　・※]*")
+    assert isinstance(indent_regex, re.Pattern), "正規表現の初期化に失敗しました"
+    indent: str = indent_regex.match(line).group()
+    return indent.translate(str.maketrans({"-": " ", "*": " ", "・": "  ", "※": "  "}))
 
 
 if __name__ == "__main__":
