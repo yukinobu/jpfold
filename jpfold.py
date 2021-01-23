@@ -13,8 +13,8 @@ LINETAIL_KINSOKU: str = "$([{£¥‘“〈《「『【〔＄（［｛｢￡￥"
 
 
 def main(args: argparse.Namespace) -> int:
-    infile:  TextIO = sys.stdin  if args.input=="-"  else open(args.input, "r",encoding="utf-8")
-    outfile: TextIO = sys.stdout if args.output=="-" else open(args.output,"w",encoding="utf-8")
+    infile:  TextIO = sys.stdin if args.input == "-" else open(args.input, "r", encoding="utf-8")
+    outfile: TextIO = sys.stdout if args.output == "-" else open(args.output, "w", encoding="utf-8")
     retval = jpfold(infile, outfile, args)
     outfile.close()
     infile.close()
@@ -206,4 +206,4 @@ if __name__ == "__main__":
     parser.add_argument("--no-indent",           action="store_false", help="改行時のインデントを抑止します")
     parser.add_argument("--no-listtail-indent",  action="store_false", help="箇条書き途中で改行時のぶら下げインデントを抑止します")
     args = parser.parse_args()
-    sys.exit( main(args) )
+    sys.exit(main(args))
