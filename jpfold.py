@@ -41,11 +41,15 @@ def jpfold(io_in: TextIO, io_out: TextIO, args: argparse.Namespace) -> int:
         成功なら 0 を返す
     """
     for line in io_in:
+        is_lastline: bool = not (line[-1] == "\r" or line[-1] == "\n")
         origline, nextline = one_line_break(line.rstrip(), args.width)
         while nextline != "":
             io_out.write(origline+LINE_BREAK)
             origline, nextline = one_line_break(nextline, args.width)
-        io_out.write(origline+LINE_BREAK)
+        if is_lastline:
+            io_out.write(origline)
+        else:
+            io_out.write(origline+LINE_BREAK)
     return 0
 
 
