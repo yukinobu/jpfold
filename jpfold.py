@@ -6,6 +6,7 @@ import argparse
 from typing import TextIO
 import unicodedata
 import re
+from pprint import pprint
 
 
 LINE_BREAK: str = "\r\n"
@@ -40,11 +41,11 @@ def jpfold(io_in: TextIO, io_out: TextIO, args: argparse.Namespace) -> int:
         成功なら 0 を返す
     """
     for line in io_in:
-        origline, nextline = one_line_break(line, args.width)
+        origline, nextline = one_line_break(line.rstrip(), args.width)
         while nextline != "":
             io_out.write(origline+LINE_BREAK)
             origline, nextline = one_line_break(nextline, args.width)
-        io_out.write(origline)
+        io_out.write(origline+LINE_BREAK)
     return 0
 
 
