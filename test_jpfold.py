@@ -153,6 +153,15 @@ class TestJpfold(unittest.TestCase):
         self.assertEqual(jpfold.get_indent_for_line("  ・あい"), "    ")
         self.assertEqual(jpfold.get_indent_for_line("  ・ あ"),  "     ")
         self.assertEqual(jpfold.get_indent_for_line("  ※ あ"),  "     ")
+        self.assertEqual(jpfold.get_indent_for_line("1."),       "  ")
+        self.assertEqual(jpfold.get_indent_for_line("2. "),      "   ")
+        self.assertEqual(jpfold.get_indent_for_line(" 3. "),     "    ")
+        self.assertEqual(jpfold.get_indent_for_line("  A. "),    "     ")
+        self.assertEqual(jpfold.get_indent_for_line("  (A). "),  "       ")
+        self.assertEqual(jpfold.get_indent_for_line("  [A]. "),  "       ")
+        self.assertEqual(jpfold.get_indent_for_line("  <A>. "),  "       ")
+        self.assertEqual(jpfold.get_indent_for_line("  A) "),    "     ")
+        self.assertEqual(jpfold.get_indent_for_line("  )A "),    "  ")
 
     def test_is_quoted_line(self):
         self.assertFalse(jpfold.is_quoted_line(""))

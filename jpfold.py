@@ -211,14 +211,21 @@ def is_linetail_konsoku(char: str) -> bool:
 
 
 def get_indent_for_line(line: str) -> str:
-    indent_regex: re.Pattern = re.compile("[-* \t　・※]*")
+    indent_regex: re.Pattern = re.compile(r"([ 　\t]*)")
     assert isinstance(indent_regex, re.Pattern), "正規表現の初期化に失敗しました"
-    m = indent_regex.match(line)
-    if m is not None:
-        indent: str = m.group()
-        return indent.translate(str.maketrans({"-": " ", "*": " ", "・": "  ", "※": "  "}))
-    else:
-        return ""
+    linesymbol_regex: re.Pattern = re.compile(r"([\[(<]?[A-Za-z0-9][\])>]?\.? ?|[-*・※] ?)")
+    assert isinstance(linesymbol_regex, re.Pattern), "正規表現の初期化に失敗しました"
+
+    next_indent: str = ""
+    current_line_pos: int = 0
+    indent_match = indent_regex.match(line[current_line_pos:])
+    if indent_match is not None:
+        next_indent += indent_match.group(1)
+        current_line_pos = len(next_indent)
+    listsymbol_match = linesymbol_regex.match(line[current_line_pos:])
+    if listsymbol_match is not None:
+        next_indent += " " * count_east_asian_string_width(listsymbol_match.group(1))
+    return next_indent
 
 
 def is_quoted_line(line: str) -> bool:
