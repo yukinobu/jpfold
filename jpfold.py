@@ -70,6 +70,10 @@ def one_line_break(origline: str, target_width: int):
         改行によって作成された次の行
     """
     assert 1 <= target_width, "target_width は 1 以上である必要があります"
+
+    if is_quoted_line(origline):
+        return origline, ""
+
     origline_len: int = len(origline)
     break_pos: int = calc_position_by_width(origline, target_width)
     while break_pos < origline_len and is_linehead_konsoku(origline[break_pos]):
@@ -211,6 +215,12 @@ def get_indent_for_line(line: str) -> str:
     assert isinstance(indent_regex, re.Pattern), "正規表現の初期化に失敗しました"
     indent: str = indent_regex.match(line).group()
     return indent.translate(str.maketrans({"-": " ", "*": " ", "・": "  ", "※": "  "}))
+
+
+def is_quoted_line(line: str) -> bool:
+    quote_regex: re.Pattern = re.compile("[>＞|]+")
+    assert isinstance(quote_regex, re.Pattern), "正規表現の初期化に失敗しました"
+    return (quote_regex.match(line) is not None)
 
 
 if __name__ == "__main__":
