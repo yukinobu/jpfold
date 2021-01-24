@@ -295,7 +295,7 @@ def is_position_within_number(line: str, pos: int) -> bool:
 def is_position_within_url(line: str, pos: int) -> bool:
     # ref: https://www.w3.org/Addressing/URL/5_BNF.html
     # 制約: URLではない単なる英単語などにもマッチする
-    isurlchar_regex: re.Pattern = re.compile(r"^[a-zA-Z0-9=;/#?:$\-_@.&+~]+$")
+    isurlchar_regex: re.Pattern = re.compile(r"^[a-zA-Z0-9=;/#?:$\-_@.&+~%]+$")
     assert isinstance(isurlchar_regex, re.Pattern), "正規表現の初期化に失敗しました"
 
     linelen: int = len(line)
