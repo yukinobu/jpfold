@@ -170,6 +170,12 @@ class TestJpfold(unittest.TestCase):
         self.assertEqual(origline, "こんにちは")
         self.assertEqual(nextline, "mailto:test@example.com")
 
+    def test_one_line_break_complex_case(self):
+        # 英文ワードラップの結果、行末禁則が出現するケース
+        origline, nextline = jpfold.one_line_break("これは「JavaScript」です", 12)
+        self.assertEqual(origline, "これは")
+        self.assertEqual(nextline, "「JavaScript」です")
+
     def test_tab_to_space(self):
         self.assertRaises(AssertionError, lambda: jpfold.tab_to_space("abcdef", 0))
         self.assertEqual(jpfold.tab_to_space("abcdef", 4),     "abcdef")

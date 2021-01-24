@@ -76,22 +76,27 @@ def one_line_break(origline: str, target_width: int):
 
     origline_len: int = len(origline)
     break_pos: int = calc_position_by_width(origline, target_width)
-    while break_pos < origline_len and is_linehead_konsoku(origline[break_pos]):
-        break_pos += 1
-    while 0 < break_pos and is_linetail_konsoku(origline[break_pos-1]):
-        break_pos -= 1
-    while 0 < break_pos and is_position_within_english_word(origline, break_pos):
-        break_pos -= 1
-    while 0 < break_pos and is_position_within_url(origline, break_pos):
-        break_pos -= 1
-    while 0 < break_pos and is_position_within_mailaddress(origline, break_pos):
-        break_pos -= 1
-    if break_pos == 0:
-        while break_pos < origline_len and (is_linehead_konsoku(origline[break_pos]) or is_linetail_konsoku(origline[break_pos])):
+
+    # 改行位置 break_pos の補正
+    prev_break_pos: int = -1
+    while 0 < break_pos and break_pos < origline_len and break_pos != prev_break_pos:
+        prev_break_pos = break_pos
+        while break_pos < origline_len and is_linehead_konsoku(origline[break_pos]):
             break_pos += 1
-        break_pos += 1
-        while break_pos < origline_len and (is_position_within_english_word(origline, break_pos) or is_position_within_url(origline, break_pos) or is_position_within_mailaddress(origline, break_pos)):
+        while 0 < break_pos and is_linetail_konsoku(origline[break_pos-1]):
+            break_pos -= 1
+        while 0 < break_pos and is_position_within_english_word(origline, break_pos):
+            break_pos -= 1
+        while 0 < break_pos and is_position_within_url(origline, break_pos):
+            break_pos -= 1
+        while 0 < break_pos and is_position_within_mailaddress(origline, break_pos):
+            break_pos -= 1
+        if break_pos == 0:
+            while break_pos < origline_len and (is_linehead_konsoku(origline[break_pos]) or is_linetail_konsoku(origline[break_pos])):
+                break_pos += 1
             break_pos += 1
+            while break_pos < origline_len and (is_position_within_english_word(origline, break_pos) or is_position_within_url(origline, break_pos) or is_position_within_mailaddress(origline, break_pos)):
+                break_pos += 1
 
     nextline: str = origline[break_pos:]
     if nextline == "":
