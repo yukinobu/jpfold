@@ -96,6 +96,17 @@ class TestJpfold(unittest.TestCase):
         self.assertEqual(origline, "  > ")
         self.assertEqual(nextline, "  今日、晴れる？")
 
+    def test_one_line_break_with_english_wordwrap(self):
+        origline, nextline = jpfold.one_line_break("The quick brown fox jumps over the lazy dog.", 10)
+        self.assertEqual(origline, "The quick ")
+        self.assertEqual(nextline, "brown fox jumps over the lazy dog.")
+        origline, nextline = jpfold.one_line_break("The quick brown fox jumps over the lazy dog.", 8)
+        self.assertEqual(origline, "The ")
+        self.assertEqual(nextline, "quick brown fox jumps over the lazy dog.")
+        origline, nextline = jpfold.one_line_break("The quick brown fox jumps over the lazy dog.", 6)
+        self.assertEqual(origline, "The ")
+        self.assertEqual(nextline, "quick brown fox jumps over the lazy dog.")
+
     def test_one_line_break_with_indent(self):
         origline, nextline = jpfold.one_line_break("  今日、晴れる？", 4)
         self.assertEqual(origline, "  今")
