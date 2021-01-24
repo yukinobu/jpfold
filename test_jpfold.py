@@ -109,6 +109,9 @@ class TestJpfold(unittest.TestCase):
         origline, nextline = jpfold.one_line_break("The quick brown fox jumps over the lazy dog.", 6)
         self.assertEqual(origline, "The ")
         self.assertEqual(nextline, "quick brown fox jumps over the lazy dog.")
+        origline, nextline = jpfold.one_line_break("Co.,Ltd.", 2)
+        self.assertEqual(origline, "Co.,")
+        self.assertEqual(nextline, "Ltd.")
 
     def test_is_position_within_english_word(self):
         self.assertFalse(jpfold.is_position_within_english_word("", 0))
