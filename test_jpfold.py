@@ -136,6 +136,11 @@ class TestJpfold(unittest.TestCase):
         self.assertFalse(jpfold.is_position_within_english_word("桜並木", 1))
         self.assertFalse(jpfold.is_position_within_english_word("桜並木", 2))
         self.assertFalse(jpfold.is_position_within_english_word("桜並木", 3))
+        self.assertFalse(jpfold.is_position_within_english_word(" 'fo' ", 1))
+        self.assertTrue(jpfold.is_position_within_english_word(" 'fo' ", 2))
+        self.assertTrue(jpfold.is_position_within_english_word(" 'fo' ", 3))
+        self.assertTrue(jpfold.is_position_within_english_word(" 'fo' ", 4))
+        self.assertFalse(jpfold.is_position_within_english_word(" 'fo' ", 5))
 
     def test_one_line_break_with_indent(self):
         origline, nextline = jpfold.one_line_break("  今日、晴れる？", 4)
@@ -175,6 +180,10 @@ class TestJpfold(unittest.TestCase):
         origline, nextline = jpfold.one_line_break("これは「JavaScript」です", 12)
         self.assertEqual(origline, "これは")
         self.assertEqual(nextline, "「JavaScript」です")
+        # 行末に複数種類の行頭禁則文字
+        origline, nextline = jpfold.one_line_break("'foo' 、 'foo.'", 5)
+        self.assertEqual(origline, "'foo' 、 ")
+        self.assertEqual(nextline, "'foo.'")
 
     def test_tab_to_space(self):
         self.assertRaises(AssertionError, lambda: jpfold.tab_to_space("abcdef", 0))

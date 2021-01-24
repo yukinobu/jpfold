@@ -237,9 +237,11 @@ def is_position_within_english_word(line: str, pos: int) -> bool:
 
     if isalpha_regex.match(line[pos-1:pos+1]) is not None:
         return True
-    elif line[pos-1] == "'" or line[pos] == "'":
+    elif isalpha_regex.match(line[pos-1]) is not None and line[pos] == "'":
         return True
-    elif line[pos-1].isalpha() and line[pos] == "-":
+    elif line[pos-1] == "'" and isalpha_regex.match(line[pos]) is not None:
+        return True
+    elif isalpha_regex.match(line[pos-1]) is not None and line[pos] == "-":
         return True
     elif line[pos-1] == "-":
         return False
