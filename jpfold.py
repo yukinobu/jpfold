@@ -87,6 +87,8 @@ def one_line_break(origline: str, target_width: int):
             break_pos -= 1
         while 0 < break_pos and is_position_within_english_word(origline, break_pos):
             break_pos -= 1
+        while 0 < break_pos and is_position_within_number(origline, break_pos):
+            break_pos -= 1
         while 0 < break_pos and is_position_within_url(origline, break_pos):
             break_pos -= 1
         while 0 < break_pos and is_position_within_mailaddress(origline, break_pos):
@@ -95,7 +97,7 @@ def one_line_break(origline: str, target_width: int):
             while break_pos < origline_len and (is_linehead_konsoku(origline[break_pos]) or is_linetail_konsoku(origline[break_pos])):
                 break_pos += 1
             break_pos += 1
-            while break_pos < origline_len and (is_position_within_english_word(origline, break_pos) or is_position_within_url(origline, break_pos) or is_position_within_mailaddress(origline, break_pos)):
+            while break_pos < origline_len and (is_position_within_english_word(origline, break_pos) or is_position_within_number(origline, break_pos) or is_position_within_url(origline, break_pos) or is_position_within_mailaddress(origline, break_pos)):
                 break_pos += 1
 
     nextline: str = origline[break_pos:]
@@ -256,6 +258,37 @@ def is_position_within_english_word(line: str, pos: int) -> bool:
     elif line[pos-1] == "-":
         # ex -a
         return False
+    return False
+
+
+def is_position_within_number(line: str, pos: int) -> bool:
+    isnumber_regex: re.Pattern = re.compile(r"^[0-9]+$")
+    assert isinstance(isnumber_regex, re.Pattern), "正規表現の初期化に失敗しました"
+
+    linelen: int = len(line)
+    assert pos <= linelen, "posはlineの長さ以内でなくてはなりません"
+    if pos == 0 or pos == linelen:
+        return False
+    assert 1 <= pos and pos <= linelen-1, "posの値が不正です"
+
+    if isnumber_regex.match(line[pos-1:pos+1]) is not None:
+        # ex. 01
+        return True
+    elif isnumber_regex.match(line[pos-1]) is not None and line[pos] == ",":
+        # ex. 0,
+        return True
+    elif line[pos-1] == "," and isnumber_regex.match(line[pos]) is not None:
+        # ex. ,0
+        return True
+    elif line[pos-1] == "\\" and isnumber_regex.match(line[pos]) is not None:
+        # ex. \0
+        return True
+    elif line[pos-1] == "$" and isnumber_regex.match(line[pos]) is not None:
+        # ex. $0
+        return True
+    elif isnumber_regex.match(line[pos-1]) is not None and line[pos] == "-":
+        # ex. 0-
+        return True
     return False
 
 

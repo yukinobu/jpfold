@@ -113,6 +113,20 @@ class TestJpfold(unittest.TestCase):
         self.assertEqual(origline, "Co.,")
         self.assertEqual(nextline, "Ltd.")
 
+    def test_one_line_break_with_number_wordwrap(self):
+        origline, nextline = jpfold.one_line_break("12345です", 3)
+        self.assertEqual(origline, "12345")
+        self.assertEqual(nextline, "です")
+        origline, nextline = jpfold.one_line_break("\\12345です", 3)
+        self.assertEqual(origline, "\\12345")
+        self.assertEqual(nextline, "です")
+        origline, nextline = jpfold.one_line_break("\\12,345です", 3)
+        self.assertEqual(origline, "\\12,345")
+        self.assertEqual(nextline, "です")
+        origline, nextline = jpfold.one_line_break("\\12,345-です", 3)
+        self.assertEqual(origline, "\\12,345-")
+        self.assertEqual(nextline, "です")
+
     def test_is_position_within_english_word(self):
         self.assertFalse(jpfold.is_position_within_english_word("", 0))
         self.assertRaises(AssertionError, lambda: jpfold.is_position_within_english_word("", 1))
