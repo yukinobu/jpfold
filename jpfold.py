@@ -80,6 +80,8 @@ def one_line_break(origline: str, target_width: int):
         break_pos += 1
     while 0 < break_pos and is_linetail_konsoku(origline[break_pos-1]):
         break_pos -= 1
+    while 0 < break_pos and is_position_within_english_word(origline, break_pos):
+        break_pos -= 1
     if break_pos == 0:
         while break_pos < origline_len and (is_linehead_konsoku(origline[break_pos]) or is_linetail_konsoku(origline[break_pos])):
             break_pos += 1
@@ -208,6 +210,27 @@ def is_linehead_konsoku(char: str) -> bool:
 def is_linetail_konsoku(char: str) -> bool:
     assert len(char) == 1, "charは1文字でなくてはなりません"
     return char in LINETAIL_KINSOKU
+
+
+def is_position_within_english_word(line: str, pos: int) -> bool:
+    isalpha_regex: re.Pattern = re.compile(r"^[a-zA-Z]+$")
+    assert isinstance(isalpha_regex, re.Pattern), "正規表現の初期化に失敗しました"
+
+    linelen: int = len(line)
+    assert pos <= linelen, "posはlineの長さ以内でなくてはなりません"
+    if pos == 0 or pos == linelen:
+        return False
+    assert 1 <= pos and pos <= linelen-1, "posの値が不正です"
+
+    if isalpha_regex.match(line[pos-1:pos+1]) is not None:
+        return True
+    elif line[pos-1] == "'" or line[pos] == "'":
+        return True
+    elif line[pos-1].isalpha() and line[pos] == "-":
+        return True
+    elif line[pos-1] == "-":
+        return False
+    return False
 
 
 def get_indent_for_line(line: str) -> str:
