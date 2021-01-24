@@ -158,7 +158,7 @@ class TestJpfold(unittest.TestCase):
         origline, nextline = jpfold.one_line_break("mailto:test@example.com", 7)
         self.assertEqual(origline, "mailto:test@example.com")
         self.assertEqual(nextline, "")
-        origline, nextline = jpfold.one_line_break("こんにちはmailto:test@example.com", 7)
+        origline, nextline = jpfold.one_line_break("こんにちはmailto:test@example.com", 10)
         self.assertEqual(origline, "こんにちは")
         self.assertEqual(nextline, "mailto:test@example.com")
 
@@ -166,7 +166,7 @@ class TestJpfold(unittest.TestCase):
         origline, nextline = jpfold.one_line_break("test@example.com", 7)
         self.assertEqual(origline, "test@example.com")
         self.assertEqual(nextline, "")
-        origline, nextline = jpfold.one_line_break("こんにちはmailto:test@example.com", 7)
+        origline, nextline = jpfold.one_line_break("こんにちはmailto:test@example.com", 10)
         self.assertEqual(origline, "こんにちは")
         self.assertEqual(nextline, "mailto:test@example.com")
 
