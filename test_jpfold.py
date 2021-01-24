@@ -84,6 +84,9 @@ class TestJpfold(unittest.TestCase):
         origline, nextline = jpfold.one_line_break("」」」", 2)
         self.assertEqual(origline, "」」」")
         self.assertEqual(nextline, "")
+        origline, nextline = jpfold.one_line_break("This is a pen.", 4)
+        self.assertEqual(origline, "This ")
+        self.assertEqual(nextline, "is a pen.")
 
     def test_one_line_break_with_quoted_line(self):
         origline, nextline = jpfold.one_line_break("> 今日、晴れる？", 4)
