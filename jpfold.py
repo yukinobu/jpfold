@@ -80,6 +80,8 @@ def one_line_break(origline: str, target_width: int):
         break_pos += 1
     while 0 < break_pos and is_linetail_konsoku(origline[break_pos-1]):
         break_pos -= 1
+    while 0 < break_pos and is_position_within_english_word(origline, break_pos):
+        break_pos -= 1
     if break_pos == 0:
         while break_pos < origline_len and (is_linehead_konsoku(origline[break_pos]) or is_linetail_konsoku(origline[break_pos])):
             break_pos += 1
