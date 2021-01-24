@@ -236,14 +236,25 @@ def is_position_within_english_word(line: str, pos: int) -> bool:
     assert 1 <= pos and pos <= linelen-1, "posの値が不正です"
 
     if isalpha_regex.match(line[pos-1:pos+1]) is not None:
+        # ex. as
         return True
     elif isalpha_regex.match(line[pos-1]) is not None and line[pos] == "'":
+        # ex. a'
         return True
     elif line[pos-1] == "'" and isalpha_regex.match(line[pos]) is not None:
+        # ex. 'a
+        return True
+    elif isalpha_regex.match(line[pos-1]) is not None and line[pos] == "\"":
+        # ex. a"
+        return True
+    elif line[pos-1] == "\"" and isalpha_regex.match(line[pos]) is not None:
+        # ex. "a
         return True
     elif isalpha_regex.match(line[pos-1]) is not None and line[pos] == "-":
+        # ex. "a
         return True
     elif line[pos-1] == "-":
+        # ex -a
         return False
     return False
 
