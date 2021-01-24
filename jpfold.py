@@ -121,10 +121,12 @@ def calc_position_by_width(text: str, target_width: int) -> int:
     position: int = 0
     textlen: int = len(text)
     while position < textlen:
-        current_width: int = count_east_asian_string_width(text[0:position])
-        if(target_width <= current_width):
+        if target_width <= count_east_asian_string_width(text[0:position]):
             break
-        position += 1
+        else:
+            position += 1
+    if target_width < count_east_asian_string_width(text[0:position]):
+        position -= 1
     return position
 
 
