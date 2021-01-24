@@ -208,6 +208,7 @@ class TestJpfold(unittest.TestCase):
         self.assertEqual(jpfold.get_indent_for_line(")("),       "")
         self.assertEqual(jpfold.get_indent_for_line("."),        "")
         self.assertEqual(jpfold.get_indent_for_line(". "),       "")
+        self.assertEqual(jpfold.get_indent_for_line("-----"),       "")
 
     def test_is_quoted_line(self):
         self.assertFalse(jpfold.is_quoted_line(""))
