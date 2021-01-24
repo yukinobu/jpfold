@@ -150,11 +150,11 @@ class TestJpfold(unittest.TestCase):
 
     def test_one_line_break_for_url(self):
         origline, nextline = jpfold.one_line_break("https://www.example.jp/", 10)
-        self.assertEqual(origline, "https://www.yukinobu.jp/")
+        self.assertEqual(origline, "https://www.example.jp/")
         self.assertEqual(nextline, "")
         origline, nextline = jpfold.one_line_break("こんにちはhttps://www.example.jp/", 10)
         self.assertEqual(origline, "こんにちは")
-        self.assertEqual(nextline, "https://www.yukinobu.jp/")
+        self.assertEqual(nextline, "https://www.example.jp/")
         origline, nextline = jpfold.one_line_break("mailto:test@example.com", 7)
         self.assertEqual(origline, "mailto:test@example.com")
         self.assertEqual(nextline, "")
