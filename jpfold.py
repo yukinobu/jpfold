@@ -75,6 +75,8 @@ def one_line_break(origline: str, target_width: int):
         return origline, ""
 
     origline_len: int = len(origline)
+    indent: str = get_indent_for_line(origline)
+    indent_len: int = len(indent)
     break_pos: int = calc_position_by_width(origline, target_width)
 
     # 改行位置 break_pos の補正
@@ -93,7 +95,7 @@ def one_line_break(origline: str, target_width: int):
             break_pos -= 1
         while 0 < break_pos and is_position_within_mailaddress(origline, break_pos):
             break_pos -= 1
-        if break_pos == 0:
+        if break_pos <= indent_len:
             while break_pos < origline_len and (is_linehead_konsoku(origline[break_pos]) or is_linetail_konsoku(origline[break_pos])):
                 break_pos += 1
             break_pos += 1
@@ -104,7 +106,6 @@ def one_line_break(origline: str, target_width: int):
     if nextline == "":
         return origline[0:break_pos], ""
     else:
-        indent: str = get_indent_for_line(origline)
         return origline[0:break_pos], indent+nextline
 
 
