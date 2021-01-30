@@ -4,7 +4,7 @@
 
 日本語のテキストを、指定された幅にあわせて折りたたみます。[fold コマンド](http://linuxjm.osdn.jp/html/GNU_textutils/man1/fold.1.html)の日本語対応版です。
 
-禁則処理、英文ワードラップ、インデントに対応します。
+禁則処理、英文ワードラップ、インデント、引用行の無視に対応します。
 
 **入力例**
 
@@ -24,6 +24,9 @@ For though result and talent add are parish valley. Songs in oh other avoid it h
 箇条書き
   - また勢い今二三二人の気に入るだけもありだに対する横着です料簡をなるば、自分にその中そのために飛びて来なけれ方ます。
   1. Added would end ask sight and asked saw dried house. Property expenses yourself occasion endeavor two may judgment she.
+
+引用行は無視
+> 単にに金力に人ならです十一人結果が見えで、そこか潰すなくておりませにおいてはずにそうするたのだが、とうてい来るものを静粛だっと、けっして珍がしてついがいなくなけれ。
 ```
 
 **出力例（witdh=66）**
@@ -54,6 +57,9 @@ Gay collected son him knowledge delivered put.
     なるば、自分にその中そのために飛びて来なけれ方ます。
   1. Added would end ask sight and asked saw dried house. Property 
      expenses yourself occasion endeavor two may judgment she.
+
+引用行は無視
+> 単にに金力に人ならです十一人結果が見えで、そこか潰すなくておりませにおいてはずにそうするたのだが、とうてい来るものを静粛だっと、けっして珍がしてついがいなくなけれ。
 ```
 
 ## 使い方
