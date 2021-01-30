@@ -2,7 +2,7 @@
 
 ## 概要
 
-日本語のテキストを、指定された幅にあわせて折りたたみます。[fold コマンド](http://linuxjm.osdn.jp/html/GNU_textutils/man1/fold.1.html)の日本語対応版です。
+日本語のテキストを、指定された幅にあわせて折りたたみます。[fold コマンド](http://linuxjm.osdn.jp/html/GNU_textutils/man1/fold.1.html)の日本語対応版を目指しています。
 
 禁則処理、英文ワードラップ、インデント、引用行の無視に対応します。
 
