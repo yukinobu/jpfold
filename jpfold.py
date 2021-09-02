@@ -8,7 +8,7 @@ import unicodedata
 import re
 
 
-LINE_BREAK: str = "\r\n"
+LINE_BREAK: str = "\n"
 LINEHEAD_KINSOKU: str = " !%),.:;?]}¢°’”‰′″℃、。々〉》」』】〕ぁぃぅぇぉっゃゅょゎ゛゜ゝゞァィゥェォッャュョヮヵヶ・ーヽヾ！％），．：；？］｝｡｣､･ｧｨｩｪｫｬｭｮｯｰﾞﾟ￠"
 LINETAIL_KINSOKU: str = "$([{£¥‘“〈《「『【〔＄（［｛｢￡￥"
 
