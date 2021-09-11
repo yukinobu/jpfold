@@ -6,7 +6,7 @@
 
 禁則処理、英文ワードラップ、インデント、引用行の無視に対応します。
 
-**入力例**
+### 入力例
 
 ```text
 日本語の段落：
@@ -29,7 +29,7 @@ For though result and talent add are parish valley. Songs in oh other avoid it h
 > 単にに金力に人ならです十一人結果が見えで、そこか潰すなくておりませにおいてはずにそうするたのだが、とうてい来るものを静粛だっと、けっして珍がしてついがいなくなけれ。
 ```
 
-**出力例（witdh=66）**
+### 出力例（witdh=66）
 
 ```text
 日本語の段落：
@@ -66,28 +66,28 @@ Gay collected son him knowledge delivered put.
 
 入出力は UTF-8 を使用します。
 
-**テキストファイルを入出力に指定**
+### テキストファイルを入出力に指定
 
 ```bash
-$ python3 /path/to/jpfold.py -i in.txt -o out.txt
+python3 /path/to/jpfold.py -i in.txt -o out.txt
 ```
 
-**クリップボード上のテキストを変換（on Cygwin）**
+### クリップボード上のテキストを変換（on Cygwin）
 
 ```bash
-$ cat /dev/clipboard | python3 /path/to/jpfold.py > /dev/clipboard
+cat /dev/clipboard | python3 /path/to/jpfold.py > /dev/clipboard
 ```
 
-**クリップボード上のテキストを、行末の空白を除去しつつ変換（on Cygwin）**
+### クリップボード上のテキストを、行末の空白を除去しつつ変換（on Cygwin）
 
 ```bash
-$ cat /dev/clipboard | python3 /path/to/jpfold.py | sed -E 's/[ 　\t]+\r/\r/g' > /dev/clipboard
+cat /dev/clipboard | python3 /path/to/jpfold.py | sed -E 's/[ 　\t]+\r/\r/g' > /dev/clipboard
 ```
 
-**jpfold 自体をテスト**
+### jpfold 自体をテスト
 
 ```ash
-$ cd /path/to/jpfold && python3 -m unittest discover
+cd /path/to/jpfold && python3 -m unittest discover
 ```
 
 ## 動作環境
