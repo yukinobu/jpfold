@@ -13,7 +13,7 @@
 　味の先刻を、その個性が次第が破るまで、今日上に少し前一十五人の連れくらいの思い切りに、私かしです安心が進まあり当時ももうありせるの、ですば、できるだけこう秋刀魚をだるから、その事から足り方に「美味ま」すないしましない。
 
 英語の段落：
-For though result and talent add are parish valley. Songs in oh other avoid it hours woman style. In myself family as if be agreed. Gay collected son him knowledge delivered put. 
+For though result and talent add are parish valley. Songs in oh other avoid it hours woman style. In myself family as if be agreed. Gay collected son him knowledge delivered put.
 
 インデント（日）
   場合なありかし哲学に限らて、このご免は正直ない大変ないともつたのんは云っうらしい、なかろ百姓の後に承た間柄なするというてもらい「なら」のますませ。
@@ -39,8 +39,8 @@ For though result and talent add are parish valley. Songs in oh other avoid it h
 すないしましない。
 
 英語の段落：
-For though result and talent add are parish valley. Songs in oh 
-other avoid it hours woman style. In myself family as if be agreed. 
+For though result and talent add are parish valley. Songs in oh
+other avoid it hours woman style. In myself family as if be agreed.
 Gay collected son him knowledge delivered put.
 
 インデント（日）
@@ -49,13 +49,13 @@ Gay collected son him knowledge delivered put.
   「なら」のますませ。
 
 インデント（英）
-  Me of soon rank be most head time tore. Colonel or passage to 
+  Me of soon rank be most head time tore. Colonel or passage to
   ability.
 
 箇条書き
   - また勢い今二三二人の気に入るだけもありだに対する横着です料簡を
     なるば、自分にその中そのために飛びて来なけれ方ます。
-  1. Added would end ask sight and asked saw dried house. Property 
+  1. Added would end ask sight and asked saw dried house. Property
      expenses yourself occasion endeavor two may judgment she.
 
 引用行は無視
