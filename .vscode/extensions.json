@@ -1,5 +1,10 @@
 {
     "recommendations": [
-        "editorconfig.editorconfig"
+        "editorconfig.editorconfig",
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-python.autopep8",
+        "ms-python.flake8",
+        "ms-python.mypy-type-checker"
     ]
 }

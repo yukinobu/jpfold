@@ -1,8 +1,21 @@
 {
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.autopep8"
+    },
+    "autopep8.args": [
+        "--max-line-length",
+        "8192"
+    ],
+    "flake8.args": [
+        "--ignore",
+        "E226,E241,E501"
+    ],
     "files.eol": "\n",
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true,
     "files.trimTrailingWhitespace": true,
+    "python.languageServer": "Pylance",
+    "python.testing.pytestEnabled": false,
     "python.testing.unittestArgs": [
         "-v",
         "-s",
@@ -10,7 +23,6 @@
         "-p",
         "test*.py"
     ],
-    "python.testing.pytestEnabled": false,
-    "python.testing.nosetestsEnabled": false,
     "python.testing.unittestEnabled": true,
+    "python.analysis.typeCheckingMode": "off"
 }
